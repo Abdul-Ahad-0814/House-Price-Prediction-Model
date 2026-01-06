@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>House Price Predictor</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="card">
+      <h2>🏠 House Price Predictor</h2>
+
+      <form action="/predict" method="post">
+        <label>Beds</label>
+        <input type="number" name="beds" required />
+
+        <label>Baths</label>
+        <input type="number" name="baths" required />
+
+        <label>Area (Sq Yards)</label>
+        <input type="number" name="area" required />
+
+        <!-- <label>Location Score</label>
+        <input type="number" step="0.1" name="Location_score" required> -->
+
+        <label>Area</label>
+        <select name="area_name" required>
+          <option value="">Select Area</option>
+          <option>DHA</option>
+          <option>Clifton</option>
+          <option>Gulshan-e-Iqbal</option>
+          <option>PECHS</option>
+          <option>North Nazimabad</option>
+          <option>Federal B Area</option>
+          <option>Johar</option>
+          <option>Malir</option>
+          <option>Korangi</option>
+          <option>Lyari</option>
+          <option>Orangi</option>
+        </select>
+
+        <button type="submit">Predict Price</button>
+      </form>
+
+      {% if prediction %}
+      <div class="result">
+        Estimated Price: <strong>{{ prediction }} Crore</strong>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
